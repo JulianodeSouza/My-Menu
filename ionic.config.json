@@ -1,0 +1,10 @@
+{
+  "name": "my-menu",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}
