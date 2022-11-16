@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true" scrollY="false" fixed color="primary">
+  <ion-grid>
+    <div class="content">
+      <div class="title">
+        <h1>My Menu</h1>
+      </div>
+
+      <div class="login-form">
+        <!-- Formulario -->
+        <ion-col size="12">
+          <ion-row>
+            <form style="width: 340px;">
+              <ion-col size="12">
+                <ion-input class="input-form" type="text" placeholder="E-mail"></ion-input>
+              </ion-col>
+              <ion-col size="12">
+                <ion-input class="input-form" type="password" placeholder="Senha"></ion-input>
+              </ion-col>
+            </form>
+          </ion-row>
+        </ion-col>
+        <!-- Botoes -->
+        <ion-col size="12">
+          <ion-row class="row-buttons">
+            <ion-button type="submit" class="buttons-footer" shape="round" color="secondary">Entrar</ion-button>
+          </ion-row>
+          <ion-row class="row-buttons">
+            <div>
+              <p class="text-cadastro">Não possui cadastro?</p>
+              <ion-button type="submit" class="buttons-footer" shape="round" color="secondary">Cadastrar</ion-button>
+            </div>
+          </ion-row>
+        </ion-col>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>
