@@ -6,6 +6,17 @@ muito maior da sua alimentação incluindo uma alimentação e vida saudável ao
     <img src="https://img.shields.io/badge/Status-Em desenvolvimento-yellow?style=for-the-badge"/>   
 </p>
 
+## `Desenvolvimento`
+Projeto foi todo idealizado no Figma, pensando em cada tela e ação que o aplicativo terá.
+
+
+Projeto no Figma -> https://www.figma.com/file/vA65KfG5XJqgXhZddHpUSp/My-Menu?node-id=0%3A1&t=P8j1iYwZIq4qF8Ho-0
+
+
+
+
+
+
 ## `Funcionalidades`
 - `Caderno de Receitas`: Usuário pode adicionar receitas que pretende fazer ou que gosta muito, permitindo que ele veja quais ingredientes são necessário e se precisa adicionar na lista de compras do mercado;
 - `Menu da Semana`: Permite que o usuário crie um cardápio semanal e possa se planejar melhor, permitindo ele ir fazer as compras dos produtos que faltam e ter uma maior noção do que está comendo durante a semana;
