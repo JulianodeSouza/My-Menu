@@ -1,0 +1,41 @@
+.header-mercado {
+  &::after {
+    background-image: none !important;
+  }
+
+  .button-back {
+    margin-left: 0.95rem;
+    font-size: 20px;
+  }
+}
+
+.breadcamp {
+  display: flex;
+  justify-content: center;
+  font-family: 'Quicksand-Light';
+  font-size: 30px;
+  align-items: center;
+  font-weight: bold;
+  margin: 15px 0 0 30px;
+}
+
+.card-mercado {
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  margin-top: 1rem;
+  
+  .content-card {
+    display: flex;
+    font-size: 18px;
+
+    .checkBox {
+      margin: 0 0.5rem 0.5rem 0;
+    }    
+  }
+}
+
+.selecionado {
+  text-decoration: line-through;
+}

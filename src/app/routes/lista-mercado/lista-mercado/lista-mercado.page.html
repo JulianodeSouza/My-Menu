@@ -1,0 +1,42 @@
+<ion-header class="header-mercado">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="button-back">
+      <ion-icon name="arrow-back-outline" (click)="back()"></ion-icon>
+    </ion-buttons>
+    <ion-title size="large">Lista de Mercado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+  <div *ngIf="iListaMercado.length == 0">
+    <ion-card color="primary" class="card-mercado">
+      <ion-card-content>
+        <div class="content-card" style="font-size: 24px;">
+          <ion-label>Nenhum item adicionado na Lista de Compras</ion-label>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="iListaMercado.length > 0">
+    <ion-card color="primary" class="card-mercado" *ngFor="let wLista of iListaMercado">
+      <ion-card-header>
+        <ion-card-title>{{ wLista.titulo }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content *ngFor="let wItens of wLista.itens">
+        <div class="content-card">
+          <ion-checkbox slot="start" class="checkBox" [(ngModel)]="wItens.selecionado" (click)="marcaCheckBox(wItens)"></ion-checkbox>
+          <ion-label class="{{wItens.class}}">({{ wItens.qtd }}) {{wItens.nome}}</ion-label>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>
