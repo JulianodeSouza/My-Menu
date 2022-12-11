@@ -1,0 +1,39 @@
+<ion-header class="header-mercado">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="button-back">
+      <ion-icon name="arrow-back-outline" (click)="back()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+  <div class="container">
+    <div class="row" *ngFor="let wItens of iReceitas">
+      <div class="title">
+        <h1>{{ wItens.tipo }}</h1>
+      </div>
+
+      <div *ngIf="wItens.receitas.length == 0">
+        <h2>Nenhuma receita encontrada.</h2>
+      </div>
+
+      <div class="content p-0" *ngIf="wItens.receitas.length > 0">
+        <ion-list lines="none p-0">
+          <ion-item class="list-item" *ngFor="let wReceitas of wItens.receitas">
+            <ion-label class="list-content">{{ wReceitas.nome_receita }} <span><ion-icon name="chevron-forward-outline"></ion-icon></span></ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons class="buttons-footer">
+      <ion-button><ion-icon name="create-outline"></ion-icon></ion-button>
+      <ion-button><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+      <ion-button><ion-icon name="trash-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

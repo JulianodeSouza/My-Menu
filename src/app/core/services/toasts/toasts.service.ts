@@ -1,13 +1,15 @@
+/** Angular */
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastsService {
 
-  constructor(private toastController: ToastController) { }
+  constructor(private toastController: ToastController, private alertController: AlertController) { }
 
+  /** Funcao de mensagens no rodape da tela */
   async toast(_Tipo: string, _Mensagem?: string) {
     let vIcon = '';
 
@@ -34,5 +36,17 @@ export class ToastsService {
     });
 
     await toast.present();
+  }
+
+  /** Funcao de alerta */
+  async presentAlert(_Tipo: string, _Mensagem?: string) {
+
+    const alert = await this.alertController.create({
+      header: _Tipo,
+      message: _Mensagem,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 }
