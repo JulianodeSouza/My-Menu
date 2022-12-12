@@ -19,7 +19,7 @@ import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     NativeStorage,
     StatusBar,
-    SplashScreen,
+    SplashScreen
   ],
   bootstrap: [AppComponent],
 })

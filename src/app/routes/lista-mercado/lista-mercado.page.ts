@@ -1,9 +1,10 @@
+
 /* Angular */
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
-/** Plugins */
-import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
+/** Service */
+import { NativeStorageService } from './../../core/services/storage/native-storage.service';
 
 @Component({
   selector: 'app-lista-mercado',
@@ -17,14 +18,14 @@ export class ListaMercadoPage {
 
   constructor(
     private cNavCtrl: NavController,
-    private cStorage: NativeStorage,
+    private cStorage: NativeStorageService,
   ) {
     this.inst();
-    this.config();
+    this.searchLista();
   }
 
   ionViewWillEnter() {
-    this.config();
+    this.searchLista();
   }
 
   // funcao de inicializacao
@@ -32,40 +33,11 @@ export class ListaMercadoPage {
     this.iListaMercado = [];
   }
 
-  public config() {
-
-    this.cStorage.getItem('lista_mercado')
-      .then(($return: any) => {
-        console.log($return)
-
-      });
-
-
-    this.searchLista();
-  }
-
+  /** Funcao para buscar os itens cadastrados */
   public searchLista() {
     let vTeste: Array<any> = [];
-    vTeste.push(
-      {
-        titulo: 'Frutas',
-        itens: [
-          { nome: 'Maça', qtd: 2, medida: 'Unid', selecionado: false, class: '' },
-          { nome: 'Banana', qtd: 1, medida: 'Unid', selecionado: false, class: '' },
-          { nome: 'Limão', qtd: 1.5, medida: 'Kg', selecionado: false, class: '' },
-          { nome: 'Manga', qtd: 1, medida: 'Kg', selecionado: false, class: '' },
-        ]
-      },
-      {
-        titulo: 'Hortaliças',
-        itens: [
-          { nome: 'Abobrinha', qtd: 1, medida: 'Kg', selecionado: false, class: '' },
-          { nome: 'Alface', qtd: 2, medida: 'Unid', selecionado: false, class: '' },
-          { nome: 'Beterraba', qtd: 1.5, medida: 'Kg', selecionado: false, class: '' },
-          { nome: 'Cenoura', qtd: 1, medida: 'Kg', selecionado: false, class: '' },
-        ]
-      },
-    )
+
+    // Puxar a tabela de itens do mercado
 
     this.iListaMercado = vTeste;
   }
@@ -87,11 +59,11 @@ export class ListaMercadoPage {
   public navigate(_Tela: string) {
     switch (_Tela) {
       case 'add':
-        this.cNavCtrl.navigateForward('add-lista');
+        this.cNavCtrl.navigateForward('add-lista'); // Remover
         break;
 
       case 'edit':
-        console.log('não temos esta tela ainda.');
+        console.log('não temos esta tela ainda.'); // Remover
         break;
     }
   }

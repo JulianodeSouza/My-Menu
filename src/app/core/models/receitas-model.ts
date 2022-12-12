@@ -1,9 +1,9 @@
 export interface ReceitasForm {
   tipo: string;
-  receitas: Array<[
+  receitas: Array<
     {
       nome_receita: string,
-      ingredientes: [{ produto: string, qtd: number }],
-      modo_prepraro: string
-    }]>
+      ingredientes: Array<{ produto: string, qtd: number }>,
+      modo_preparo: string
+    }>
 }

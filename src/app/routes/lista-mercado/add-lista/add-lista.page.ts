@@ -63,7 +63,6 @@ export class AddListaPage {
   public config() {
     this.cStorage.getItem('cat/unid_medidas')
       .then(($return: any) => {
-
         this.iCategorias = $return.categorias;
         this.iUnidMedidas = $return.unid_medidas;
       });
@@ -138,10 +137,9 @@ export class AddListaPage {
 
   // Funcao para salvar o item exibir na lista de mercado
   public addItem() {
-    console.log(this.iForm);
     if (this.validateForm()) {
       this.cStorage.setItem('lista_mercado', this.iForm)
-        .then(() => {
+        .then(() => {   
           this.cToasts.toast('success', 'Produto salvo com sucesso!');
           this.back();
         }, ($error: any) => {

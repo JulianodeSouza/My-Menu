@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 /** Services */
-import { NativeStorageService } from './../../../core/services/storage/native-storage.service';
+import { NativeStorageService } from './../../core/services/storage/native-storage.service';
 
 @Component({
   selector: 'app-caderno-receitas',
