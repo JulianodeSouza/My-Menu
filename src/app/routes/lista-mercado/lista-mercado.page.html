@@ -27,7 +27,7 @@
       <ion-card-content *ngFor="let wItens of wLista.itens">
         <div class="content-card">
           <ion-checkbox slot="start" class="checkBox" [(ngModel)]="wItens.selecionado" (click)="marcaCheckBox(wItens)"></ion-checkbox>
-          <ion-label class="{{wItens.class}}">({{ wItens.qtd }}) {{wItens.nome}}</ion-label>
+          <ion-label class="{{wItens.class}}">({{ wItens.qtd }} {{wItens.medida}}) {{wItens.nome}}</ion-label>
         </div>
       </ion-card-content>
     </ion-card>
@@ -37,6 +37,9 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-title>Footer</ion-title>
+    <ion-buttons class="buttons-footer">
+      <ion-button class="buttons" shape="round" (click)="navigate('edit')"><ion-icon name="create-outline"></ion-icon></ion-button>
+      <ion-button class="buttons" shape="round" (click)="navigate('add')"><ion-icon name="add-outline"></ion-icon></ion-button>      
+    </ion-buttons>  
   </ion-toolbar>
 </ion-footer>

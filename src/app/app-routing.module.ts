@@ -21,13 +21,16 @@ const routes: Routes = [
   },
   {
     path: 'lista-mercado',
-    loadChildren: () => import('./routes/lista-mercado/lista-mercado/lista-mercado.module').then( m => m.ListaMercadoPageModule)
-  },  {
+    loadChildren: () => import('./routes/lista-mercado/lista-mercado.module').then( m => m.ListaMercadoPageModule)
+  },
+  {
     path: 'detalhes-receita',
     loadChildren: () => import('./routes/caderno-receitas/components/detalhes-receita/detalhes-receita.module').then( m => m.DetalhesReceitaPageModule)
   },
-
-  
+  {
+    path: 'add-lista',
+    loadChildren: () => import('./routes/lista-mercado/add-lista/add-lista.module').then( m => m.AddListaPageModule)
+  }  
 ];
 
 @NgModule({

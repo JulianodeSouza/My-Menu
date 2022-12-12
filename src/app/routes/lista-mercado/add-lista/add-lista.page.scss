@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center; 
+
+  .card-add {  
+    width: 90%;
+    margin: 10rem 0 0 0;
+    .col-buttons {
+      display: flex;
+      justify-content: center;
+  
+      .save-button {
+        box-shadow: 1px 3px #00000033;
+        margin-top: 15px;
+        background-color: #b7f399;
+        width: 50%;
+        border-radius: 2rem;
+      }
+    }
+  }
+}

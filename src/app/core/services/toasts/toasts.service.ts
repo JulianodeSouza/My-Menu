@@ -29,7 +29,7 @@ export class ToastsService {
       message: _Mensagem || '',
       color: _Tipo,
       icon: vIcon,
-      duration: 2000,
+      duration: 3000,
       position: 'bottom',
       animated: true,
       mode: "ios"

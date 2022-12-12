@@ -2,21 +2,6 @@
   &::after {
     background-image: none !important;
   }
-
-  .button-back {
-    margin-left: 0.95rem;
-    font-size: 20px;
-  }
-}
-
-.breadcamp {
-  display: flex;
-  justify-content: center;
-  font-family: 'Quicksand-Light';
-  font-size: 30px;
-  align-items: center;
-  font-weight: bold;
-  margin: 15px 0 0 30px;
 }
 
 .card-mercado {
@@ -32,10 +17,10 @@
 
     .checkBox {
       margin: 0 0.5rem 0.5rem 0;
-    }    
-  }
-}
+    }
 
-.selecionado {
-  text-decoration: line-through;
+    .selecionado {
+      text-decoration: line-through;
+    }
+  }
 }
