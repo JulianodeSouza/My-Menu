@@ -1,0 +1,57 @@
+<ion-header class="header-mercado">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="button-back">
+      <ion-icon name="arrow-back-outline" (click)="back()"></ion-icon>
+    </ion-buttons>
+    <ion-title size="large">Adicionar itens</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+  <div class="container">
+    <ion-card class="card-add">  
+      <ion-card-content>
+        <form>
+          <div>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">Produto<span class="text-danger">*</span></ion-label>
+                <ion-input type="text" placeholder="Digite..." name="produto" autocorrect="on" [(ngModel)]="iForm.produto" (change)="validaCampos('produto')"></ion-input>
+              </ion-item>
+              <p class="text-danger" *ngIf="iErro.produto">Campo Obrigatório</p>
+            </ion-col>
+  
+            <ion-col size="12">
+              <ion-item>
+                <ion-select placeholder="Categoria" (ionChange)="alteraComboBox($event, 'categoria')">
+                  <ion-select-option name="categoria" *ngFor="let wCategoria of iCategorias" value="{{ wCategoria }}">{{ wCategoria }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">Quantidade<span class="text-danger">*</span></ion-label>
+                <ion-input type="number" placeholder="Digite..." name="quantidade" [(ngModel)]="iForm.quantidade" (change)="validaCampos('quantidade')"></ion-input>
+              </ion-item>
+              <p class="text-danger" *ngIf="iErro.quantidade">Campo Obrigatório</p>
+            </ion-col>
+    
+            <ion-col size="12">            
+                <ion-item>
+                  <ion-select placeholder="Unid. Medida*" (ionChange)="alteraComboBox($event, 'unid_medida')">
+                    <ion-select-option name="unid_medida" *ngFor="let wUnidMedida of iUnidMedidas" value="{{ wUnidMedida }}">{{ wUnidMedida }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <p class="text-danger" *ngIf="iErro.unid_medida">Campo Obrigatório</p>
+            </ion-col>
+          </div>
+        </form>
+  
+        <ion-buttons class="col-buttons">
+          <ion-button class="save-button" shape="round" (click)="addItem()">Salvar</ion-button>        
+        </ion-buttons>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

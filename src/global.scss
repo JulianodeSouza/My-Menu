@@ -24,3 +24,45 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@font-face {
+  font-family: 'AlmendraSC';
+  src: url('./assets/fonts/AlmendraSC-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Quicksand-Light';
+  src: url('./assets/fonts/Quicksand-Light.ttf');
+}
+
+// Telas
+.header-mercado {
+
+  .button-back {
+    margin-left: 0.95rem;
+    font-size: 20px;
+  }
+}
+
+.breadcamp {
+  display: flex;
+  justify-content: center;
+  font-family: 'Quicksand-Light';
+  font-size: 30px;
+  align-items: center;
+  font-weight: bold;
+  margin: 15px 0 0 30px;
+}
+
+.buttons-footer {
+  display: flex;
+  justify-content: center;
+  
+  ion-icon {
+    font-size: 35px;
+  }
+}
+
+.text-danger {
+  color: #ff0000;
+}

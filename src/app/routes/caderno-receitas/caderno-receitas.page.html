@@ -1,0 +1,25 @@
+<ion-header class="header-mercado">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="button-back">
+      <ion-icon name="arrow-back-outline" (click)="back()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+  <div class="container">
+    <div class="row">
+      <div class="title">
+        <h1>Receitas</h1>
+      </div>
+
+      <div class="content">
+        <ion-buttons class="buttons-home">
+          <ion-button class="buttons" shape="round" (click)="navigate('Refeições')">Refeições</ion-button>
+          <ion-button class="buttons" shape="round" (click)="navigate('Lanches')">Lanches</ion-button>
+          <ion-button class="buttons" shape="round" (click)="navigate('Sobremesas')">Sobremesas</ion-button>
+        </ion-buttons>
+      </div>
+    </div>
+  </div>
+</ion-content>

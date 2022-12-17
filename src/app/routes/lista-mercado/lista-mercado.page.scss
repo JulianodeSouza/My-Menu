@@ -1,0 +1,26 @@
+.header-mercado {
+  &::after {
+    background-image: none !important;
+  }
+}
+
+.card-mercado {
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  margin-top: 1rem;
+  
+  .content-card {
+    display: flex;
+    font-size: 18px;
+
+    .checkBox {
+      margin: 0 0.5rem 0.5rem 0;
+    }
+
+    .selecionado {
+      text-decoration: line-through;
+    }
+  }
+}

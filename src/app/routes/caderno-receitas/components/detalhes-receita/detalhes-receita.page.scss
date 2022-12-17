@@ -1,0 +1,29 @@
+.header-mercado {
+  &::after {
+    background-image: none !important;
+  }
+
+  .button-back {
+    margin-left: 0.95rem;
+    font-size: 20px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    text-align: center;
+  }
+
+  .list-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .list-item:nth-child(odd) {
+    --background: #FFE3A9 !important;
+  }
+}
