@@ -2,10 +2,6 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
-/** Plugins */
-import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
-import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
-
 /** Services */
 import { NativeStorageService } from './core/services/storage/native-storage.service';
 
@@ -22,8 +18,6 @@ export class AppComponent {
 
   constructor(
     private cPlatform: Platform,
-    private cStatusBar: StatusBar,
-    private cSplashScreen: SplashScreen,
     private cStorage: NativeStorageService
   ) {
     this.inst();
@@ -48,10 +42,6 @@ export class AppComponent {
 
     this.cPlatform.ready()
       .then(() => {
-        this.cStatusBar.styleDefault();
-        this.cSplashScreen.hide();
-
-
         this.cStorage.useStorage('POST', 'cat/unid_medidas', vDados);
       })
   }
