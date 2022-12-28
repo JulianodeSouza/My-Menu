@@ -21,6 +21,8 @@
     "@angular/router": "^14.0.0",
     "@awesome-cordova-plugins/native-storage": "^6.2.0",
     "@awesome-cordova-plugins/splash-screen": "^6.2.0",
+    "@awesome-cordova-plugins/sqlite": "^6.2.0",
+    "@awesome-cordova-plugins/sqlite-porter": "^6.2.0",
     "@awesome-cordova-plugins/status-bar": "^6.2.0",
     "@capacitor/app": "4.1.0",
     "@capacitor/core": "4.4.0",
@@ -82,7 +84,9 @@
       "cordova-plugin-device": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-nativestorage": {}
+      "cordova-plugin-nativestorage": {},
+      "cordova-sqlite-storage": {},
+      "uk.co.workingedge.cordova.plugin.sqliteporter": {}
     },
     "platforms": [
       "android"
