@@ -24,7 +24,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-select placeholder="Categoria" (ionChange)="alteraComboBox($event, 'categoria')">
-                  <ion-select-option name="categoria" *ngFor="let wCategoria of iCategorias" value="{{ wCategoria }}">{{ wCategoria }}</ion-select-option>
+                  <ion-select-option name="categoria" *ngFor="let wCategoria of iCategorias" value="{{ wCategoria.id }}">{{ wCategoria.nome }}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -40,7 +40,7 @@
             <ion-col size="12">            
                 <ion-item>
                   <ion-select placeholder="Unid. Medida*" (ionChange)="alteraComboBox($event, 'unid_medida')">
-                    <ion-select-option name="unid_medida" *ngFor="let wUnidMedida of iUnidMedidas" value="{{ wUnidMedida }}">{{ wUnidMedida }}</ion-select-option>
+                    <ion-select-option name="unid_medida" *ngFor="let wUnidMedida of iUnidMedidas" value="{{ wUnidMedida.id }}">{{ wUnidMedida.unidade }}</ion-select-option>
                   </ion-select>
                 </ion-item>
                 <p class="text-danger" *ngIf="iErro.unid_medida">Campo Obrigatório</p>

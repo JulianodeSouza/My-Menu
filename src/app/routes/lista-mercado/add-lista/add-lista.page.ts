@@ -4,12 +4,16 @@ import { NavController } from '@ionic/angular';
 
 /** Plugins */
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
+import { SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 
 /** Models */
 import { ErroProdutosLista, ProdutosListaForm } from 'src/app/core/models/add-lista.model';
+import { UnidMedidas } from './../../../core/models/add-lista.model';
 
 /** Services */
 import { ToastsService } from 'src/app/core/services/toasts/toasts.service'
+import { DatabaseService } from './../../../core/services/backend/database.service';
+
 
 @Component({
   selector: 'app-add-lista',
@@ -24,7 +28,7 @@ export class AddListaPage {
 
   /** Variaveis de preenchimento de lista */
   public iCategorias: Array<any>;
-  public iUnidMedidas: Array<any>;
+  public iUnidMedidas: Array<UnidMedidas>;
 
   /** Variavel de validacao */
   public iFormChange: boolean;
@@ -32,7 +36,8 @@ export class AddListaPage {
   constructor(
     private cNavCtrl: NavController,
     private cStorage: NativeStorage,
-    private cToasts: ToastsService
+    private cToasts: ToastsService,
+    private cDataBaseService: DatabaseService
   ) {
     this.inst();
     this.config();
@@ -61,11 +66,19 @@ export class AddListaPage {
 
   /** Funcao de configuracoes */
   public config() {
-    this.cStorage.getItem('cat/unid_medidas')
-      .then(($return: any) => {
-        this.iCategorias = $return.categorias;
-        this.iUnidMedidas = $return.unid_medidas;
-      });
+    this.cDataBaseService.getDB()
+      .then((db: SQLiteObject) => {
+        let SQL: string = 'SELECT * FROM categoria_alimentos';
+        let data: any = [];
+        
+        return db.executeSql(SQL, data)
+          .then(($return: any) => {
+
+            for (let i = 0; i < $return.rows.length; i++) {
+              this.iCategorias.push($return.rows.item(i));
+            }
+          })
+      })
   }
 
   // funcao para alterar o valor do comboBox
@@ -96,13 +109,13 @@ export class AddListaPage {
           this.iErro.quantidade = false;
         }
         break
-      case 'unid_medida':
-        if (this.iForm.unid_medida == '') {
-          this.iErro.unid_medida = true;
-        } else {
-          this.iErro.unid_medida = false;
-        }
-        break
+      // case 'unid_medida':
+      //   if (this.iForm.unid_medida == '') {
+      //     this.iErro.unid_medida = true;
+      //   } else {
+      //     this.iErro.unid_medida = false;
+      //   }
+      //   break
     }
 
     this.iFormChange = true;
@@ -139,7 +152,7 @@ export class AddListaPage {
   public addItem() {
     if (this.validateForm()) {
       this.cStorage.setItem('lista_mercado', this.iForm)
-        .then(() => {   
+        .then(() => {
           this.cToasts.toast('success', 'Produto salvo com sucesso!');
           this.back();
         }, ($error: any) => {

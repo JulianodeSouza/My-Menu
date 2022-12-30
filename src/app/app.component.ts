@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 /** Services */
-import { NativeStorageService } from './core/services/storage/native-storage.service';
+import { DatabaseService } from './core/services/backend/database.service';
 
 @Component({
   selector: 'app-root',
@@ -12,37 +12,14 @@ import { NativeStorageService } from './core/services/storage/native-storage.ser
 })
 
 export class AppComponent {
-  /** Variaveis de preenchimento de lista */
-  public iCategorias: Array<any>;
-  public iUnidMedidas: Array<any>;
 
   constructor(
     private cPlatform: Platform,
-    private cStorage: NativeStorageService
+    private cDataBaseService: DatabaseService
   ) {
-    this.inst();
-    this.initializeApp();
-  }
-
-  /** Função para inicializar as variáveis */
-  public inst() {
-    this.iCategorias = [];
-    this.iUnidMedidas = [];
-  }
-
-
-  public initializeApp() {
-    this.iCategorias.push('Frutas', 'Hortaliças', 'Carboidratos', 'Proteinas', 'Cereais', 'Pães', 'Leguminosos', 'Temperos');
-    this.iUnidMedidas.push('KG', 'Unid', 'g');
-
-    let vDados = {
-      categorias: this.iCategorias,
-      unid_medidas: this.iUnidMedidas
-    }
-
     this.cPlatform.ready()
       .then(() => {
-        this.cStorage.useStorage('POST', 'cat/unid_medidas', vDados);
-      })
+        this.cDataBaseService.createDataBase();
+      });
   }
 }

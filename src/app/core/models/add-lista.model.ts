@@ -10,3 +10,8 @@ export interface ErroProdutosLista {
   quantidade: boolean,
   unid_medida: boolean
 }
+
+export interface UnidMedidas {
+  id: number;
+  unidade: string;
+}

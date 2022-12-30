@@ -9,13 +9,17 @@ import { AppRoutingModule } from './app-routing.module';
 
 /** Plugins */
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
+import { SQLitePorter } from '@awesome-cordova-plugins/sqlite-porter/ngx';
+import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     NativeStorage,
+    SQLitePorter,
+    SQLite,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
 })
