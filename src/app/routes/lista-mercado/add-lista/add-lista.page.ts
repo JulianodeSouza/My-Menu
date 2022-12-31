@@ -1,3 +1,4 @@
+import { ListaMercadoService } from './../../../core/services/requests/lista-mercado/lista-mercado.service';
 /** Angular */
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
@@ -37,7 +38,8 @@ export class AddListaPage {
     private cNavCtrl: NavController,
     private cStorage: NativeStorage,
     private cToasts: ToastsService,
-    private cDataBaseService: DatabaseService
+    private cDataBaseService: DatabaseService,
+    private cListaMercadoService: ListaMercadoService
   ) {
     this.inst();
     this.config();
@@ -66,19 +68,16 @@ export class AddListaPage {
 
   /** Funcao de configuracoes */
   public config() {
-    this.cDataBaseService.getDB()
-      .then((db: SQLiteObject) => {
-        let SQL: string = 'SELECT * FROM categoria_alimentos';
-        let data: any = [];
-        
-        return db.executeSql(SQL, data)
-          .then(($return: any) => {
 
-            for (let i = 0; i < $return.rows.length; i++) {
-              this.iCategorias.push($return.rows.item(i));
-            }
-          })
-      })
+    this.cListaMercadoService.listaMercadoDefaultData('GET', ['categoria_alimentos', 'unid_medidas'], [])
+      .then(($return: any) => {
+
+        console.log('Reusltado: ', $return.rows.item());
+
+
+
+      });
+
   }
 
   // funcao para alterar o valor do comboBox

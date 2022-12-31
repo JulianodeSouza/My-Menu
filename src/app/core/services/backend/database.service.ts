@@ -40,7 +40,8 @@ export class DatabaseService {
         this.createTables(db);
 
         // Insere dados padrões do app
-        this.insertDataDefault(db);
+        this.insertDataDefaultAlimentos(db);
+        this.insertDefaultDataUnidMedidas(db);
       })
       .catch($error => {
         console.log($error);
@@ -51,43 +52,53 @@ export class DatabaseService {
   // Funcao para criar tabelas
   private createTables(_Db: SQLiteObject) {
     return _Db.sqlBatch([
-      ['CREATE TABLE IF NOT EXISTS categoria_alimentos(id INTEGER PRIMARY KEY AUTOINCREMENT, alimentos TEXT)'],
-      ['CREATE TABLE IF NOT EXISTS unid_medidas(id INTEGER PRIMARY KEY AUTOINCREMENT, unidade TEXT);']
+      ['CREATE TABLE IF NOT EXISTS categoria_alimentos(id INTEGER PRIMARY KEY AUTOINCREMENT, alimentos TEXT, tipo TEXT)'],
+      ['CREATE TABLE IF NOT EXISTS unid_medidas(id INTEGER PRIMARY KEY AUTOINCREMENT, unidade TEXT, tipo TEXT);'],
       ['CREATE TABLE IF NOT EXISTS lista_mercado(id INTEGER PRIMARY KEY AUTOINCREMENT, produto TEXT, categoria TEXT, quantidade FLOAT, unid_medida TEXT);']
     ]);
   }
 
-  private insertDataDefault(_Db: SQLiteObject) {
+  private insertDataDefaultAlimentos(_Db: SQLiteObject) {
     return _Db.executeSql('select COUNT(id) as alimentos from categoria_alimentos', [])
       .then(($return) => {
         if ($return.rows.item(0).alimentos == 0) {
           _Db.sqlBatch([
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Frutas']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Hortaliças']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Carboidratos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Proteinas']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Cereais']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Pães']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Leguminosos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Temperos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Frutas', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Hortaliças', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Carboidratos', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Proteinas', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Cereais', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Pães', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Leguminosos', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Temperos', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Laticínios', 'alimentos']],
           ])
             .then(() => console.log('Categorias de alimentos inseridas com sucesso!'))
-            .catch(() => console.log('Houve um erro ao inserir as categorias de alimentos'))
+            .catch(($error) => {
+              console.log('Houve um erro ao inserir as categorias de alimentos');
+              console.error($error);
+            })
         }
       });
+  }
 
-    _Db.executeSql('select COUNT(id) as unid from unid_medidas', [])
+  private insertDefaultDataUnidMedidas(_Db: SQLiteObject) {
+
+    return _Db.executeSql('select COUNT(id) as unid from unid_medidas', [])
       .then(($return: any) => {
 
         if ($return.rows.item(0).unid == 0) {
           _Db.sqlBatch([
-            ['INSERT into unid_medidas (unidade) values (?)', ['KG']],
-            ['INSERT into unid_medidas (unidade) values (?)', ['Litros']],
-            ['INSERT into unid_medidas (unidade) values (?)', ['g']],
-            ['INSERT into unid_medidas (unidade) values (?)', ['Unid']]
+            ['INSERT into unid_medidas (unidade) values (?)', ['KG', 'medidas']],
+            ['INSERT into unid_medidas (unidade) values (?)', ['Litros', 'medidas']],
+            ['INSERT into unid_medidas (unidade) values (?)', ['g', 'medidas']],
+            ['INSERT into unid_medidas (unidade) values (?)', ['Unid', 'medidas']],
           ])
             .then(() => console.log("Unidades de medidas inseridas com sucesso!"))
-            .catch(() => console.log('Houve um erro ao inserir as unidades de medidas.'));
+            .catch(($error) => {
+              console.log('Houve um erro ao inserir as unidades de medidas.')
+              console.error($error);
+            });
         }
       });
   }

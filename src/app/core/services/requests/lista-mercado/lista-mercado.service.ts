@@ -15,14 +15,22 @@ export class ListaMercadoService {
   constructor() { }
 
   // Método para salvar, alterar e remover items da lista
-  public listaMercadoAcoes(_Method: string, _Tabela: string, _Data?: any,) {
+  public listaMercadoDefaultData(_Method: string, _Tabelas: Array<string>, _Data?: any,) {
+    let arrayTabelas: Array<string> = _Tabelas.slice(0);
+    let data: any = _Data;
+
+
+    console.log(arrayTabelas[0])
+
+
+
+
+
+
     if (_Method == 'GET') {
-      let sql = `SELECT * FROM ${_Tabela}`
+      let sql = `SELECT * FROM ${arrayTabelas[0]} UNION SELECT * FROM ${arrayTabelas[1]}`
 
-      console.log("Chegou na request");
-
-
-      return this.SQLExecute.executeSql(sql);
+      return this.SQLExecute.executeSql(sql, data)
     }
 
 
