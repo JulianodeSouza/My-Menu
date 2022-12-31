@@ -72,13 +72,18 @@ export class AddListaPage {
     this.cListaMercadoService.listaMercadoDefaultData('GET', ['categoria_alimentos', 'unid_medidas'], [])
       .then(($return: any) => {
 
-        console.log('Reusltado: ', $return.rows.item());
+        for (let i = 0; i < $return.rows.length; i++) {
+          if ($return.rows.item(i).tipo == 'medidas') {
 
+            this.iUnidMedidas.push($return.rows.item(i));
 
-
+          } else {
+            this.iCategorias.push($return.rows.item(i));
+          }
+        }
       });
-
   }
+  // VERIFICAR NOME DAS COLUNAS NAS UNIDADES DE MEDIDA
 
   // funcao para alterar o valor do comboBox
   alteraComboBox(_Event: any, _Campo: string) {
@@ -108,13 +113,13 @@ export class AddListaPage {
           this.iErro.quantidade = false;
         }
         break
-      // case 'unid_medida':
-      //   if (this.iForm.unid_medida == '') {
-      //     this.iErro.unid_medida = true;
-      //   } else {
-      //     this.iErro.unid_medida = false;
-      //   }
-      //   break
+      case 'unid_medida':
+        if (this.iForm.unid_medida == '') {
+          this.iErro.unid_medida = true;
+        } else {
+          this.iErro.unid_medida = false;
+        }
+        break
     }
 
     this.iFormChange = true;

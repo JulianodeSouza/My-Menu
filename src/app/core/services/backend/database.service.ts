@@ -63,15 +63,15 @@ export class DatabaseService {
       .then(($return) => {
         if ($return.rows.item(0).alimentos == 0) {
           _Db.sqlBatch([
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Frutas', 'alimentos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Hortaliças', 'alimentos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Carboidratos', 'alimentos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Proteinas', 'alimentos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Cereais', 'alimentos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Pães', 'alimentos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Leguminosos', 'alimentos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Temperos', 'alimentos']],
-            ['INSERT into categoria_alimentos (alimentos) values (?)', ['Laticínios', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Frutas', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Hortaliças', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Carboidratos', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Proteinas', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Cereais', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Pães', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Leguminosos', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Temperos', 'alimentos']],
+            ['INSERT into categoria_alimentos (alimentos, tipo) values (?, ?)', ['Laticínios', 'alimentos']],
           ])
             .then(() => console.log('Categorias de alimentos inseridas com sucesso!'))
             .catch(($error) => {
@@ -89,10 +89,10 @@ export class DatabaseService {
 
         if ($return.rows.item(0).unid == 0) {
           _Db.sqlBatch([
-            ['INSERT into unid_medidas (unidade) values (?)', ['KG', 'medidas']],
-            ['INSERT into unid_medidas (unidade) values (?)', ['Litros', 'medidas']],
-            ['INSERT into unid_medidas (unidade) values (?)', ['g', 'medidas']],
-            ['INSERT into unid_medidas (unidade) values (?)', ['Unid', 'medidas']],
+            ['INSERT into unid_medidas (unidade, tipo) values (?, ?)', ['KG', 'medidas']],
+            ['INSERT into unid_medidas (unidade, tipo) values (?, ?)', ['Litros', 'medidas']],
+            ['INSERT into unid_medidas (unidade, tipo) values (?, ?)', ['g', 'medidas']],
+            ['INSERT into unid_medidas (unidade, tipo) values (?, ?)', ['Unid', 'medidas']],
           ])
             .then(() => console.log("Unidades de medidas inseridas com sucesso!"))
             .catch(($error) => {
