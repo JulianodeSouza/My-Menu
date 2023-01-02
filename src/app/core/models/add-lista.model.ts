@@ -13,5 +13,10 @@ export interface ErroProdutosLista {
 
 export interface UnidMedidas {
   id: number;
-  unidade: string;
+  alimentos: string;
+}
+
+export interface CatAlimentos {
+  id: number;
+  alimentos: string;
 }

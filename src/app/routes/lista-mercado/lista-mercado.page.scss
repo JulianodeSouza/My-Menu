@@ -10,6 +10,11 @@
   border-top: 1px solid;
   border-bottom: 1px solid;
   margin-top: 1rem;
+
+  .title-categoria {
+    display: flex;
+    justify-content: center;
+  }
   
   .content-card {
     display: flex;
@@ -22,5 +27,9 @@
     .selecionado {
       text-decoration: line-through;
     }
+  }
+
+  .txt-item {
+    padding-bottom: 0.5rem;
   }
 }

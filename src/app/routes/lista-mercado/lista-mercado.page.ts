@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 /** Service */
+import { ListaMercadoService } from 'src/app/core/services/requests/lista-mercado/lista-mercado.service';
 import { NativeStorageService } from './../../core/services/storage/native-storage.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class ListaMercadoPage {
   constructor(
     private cNavCtrl: NavController,
     private cStorage: NativeStorageService,
+    private cListaMercadoService: ListaMercadoService
   ) {
     this.inst();
     this.searchLista();
@@ -35,13 +37,34 @@ export class ListaMercadoPage {
 
   /** Funcao para buscar os itens cadastrados */
   public searchLista() {
-    let vTeste: Array<any> = [];
+    let iDataArray: Array<any> = [];
 
-    // Puxar a tabela de itens do mercado
+    this.cListaMercadoService.listaMercadoAcoes('GET', [])
+      .then(($return: any) => {
 
-    this.iListaMercado = vTeste;
+        if ($return.itens_mercado.length > 0) {
+          for (let wItens = 0; wItens < $return.itens_mercado.length; wItens++) {
+
+            iDataArray.push({
+              categoria: $return.itens_mercado.item(wItens).categoria,
+              itens: [{
+                produto: $return.itens_mercado.item(wItens).produto,
+                quantidade: $return.itens_mercado.item(wItens).quantidade,
+                unid_medida: $return.itens_mercado.item(wItens).unid_medida,
+                class: '',
+                selecionado: false
+              }]
+            });
+          }
+
+          this.iListaMercado = iDataArray;
+        } else {
+          this.iListaMercado = [];
+        }
+      });
   }
 
+  // Funcao para adicionar css de marcado/desmarcado nos itens da lista
   public marcaCheckBox(_Event) {
 
     if (!_Event.selecionado) {
@@ -59,7 +82,7 @@ export class ListaMercadoPage {
   public navigate(_Tela: string) {
     switch (_Tela) {
       case 'add':
-        this.cNavCtrl.navigateForward('add-lista'); // Remover
+        this.cNavCtrl.navigateForward('add-lista');
         break;
 
       case 'edit':

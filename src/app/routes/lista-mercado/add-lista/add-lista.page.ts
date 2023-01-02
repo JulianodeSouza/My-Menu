@@ -1,20 +1,17 @@
-import { ListaMercadoService } from './../../../core/services/requests/lista-mercado/lista-mercado.service';
 /** Angular */
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 /** Plugins */
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
-import { SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 
 /** Models */
-import { ErroProdutosLista, ProdutosListaForm } from 'src/app/core/models/add-lista.model';
+import { CatAlimentos, ErroProdutosLista, ProdutosListaForm } from 'src/app/core/models/add-lista.model';
 import { UnidMedidas } from './../../../core/models/add-lista.model';
 
 /** Services */
 import { ToastsService } from 'src/app/core/services/toasts/toasts.service'
-import { DatabaseService } from './../../../core/services/backend/database.service';
-
+import { ListaMercadoService } from './../../../core/services/requests/lista-mercado/lista-mercado.service';
 
 @Component({
   selector: 'app-add-lista',
@@ -28,7 +25,7 @@ export class AddListaPage {
   public iErro: ErroProdutosLista;
 
   /** Variaveis de preenchimento de lista */
-  public iCategorias: Array<any>;
+  public iCategorias: Array<CatAlimentos>;
   public iUnidMedidas: Array<UnidMedidas>;
 
   /** Variavel de validacao */
@@ -36,9 +33,7 @@ export class AddListaPage {
 
   constructor(
     private cNavCtrl: NavController,
-    private cStorage: NativeStorage,
     private cToasts: ToastsService,
-    private cDataBaseService: DatabaseService,
     private cListaMercadoService: ListaMercadoService
   ) {
     this.inst();
@@ -74,16 +69,13 @@ export class AddListaPage {
 
         for (let i = 0; i < $return.rows.length; i++) {
           if ($return.rows.item(i).tipo == 'medidas') {
-
             this.iUnidMedidas.push($return.rows.item(i));
-
           } else {
             this.iCategorias.push($return.rows.item(i));
           }
         }
       });
   }
-  // VERIFICAR NOME DAS COLUNAS NAS UNIDADES DE MEDIDA
 
   // funcao para alterar o valor do comboBox
   alteraComboBox(_Event: any, _Campo: string) {
@@ -155,15 +147,16 @@ export class AddListaPage {
   // Funcao para salvar o item exibir na lista de mercado
   public addItem() {
     if (this.validateForm()) {
-      this.cStorage.setItem('lista_mercado', this.iForm)
-        .then(() => {
-          this.cToasts.toast('success', 'Produto salvo com sucesso!');
-          this.back();
-        }, ($error: any) => {
-          console.log($error);
-          this.cToasts.toast('danger', 'Ocorreu um erro tentar salvar seu produto.');
+      
+      this.cListaMercadoService.listaMercadoAcoes('POST', this.iForm)
+        .then(($return: any) => {
+          if ($return.sucesso) {
+            this.cToasts.toast('success', $return.mensagem);           
+            this.back();
+          } else {
+            this.cToasts.toast('danger', $return.mensagem);
+          }
         });
-
     } else {
       this.cToasts.toast('warning', 'Preencha todos os campos obrigatórios!');
     }
@@ -172,5 +165,15 @@ export class AddListaPage {
   // Funcao para retornar à tela anterior
   public back() {
     this.cNavCtrl.back();
+  }
+
+  // funcao para limpar o formulario
+  private clearForm() {
+    this.iForm = {
+      produto: '',
+      categoria: '',
+      quantidade: 0,
+      unid_medida: ''
+    }
   }
 }

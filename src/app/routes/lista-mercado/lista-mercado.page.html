@@ -21,18 +21,17 @@
   <div *ngIf="iListaMercado.length > 0">
     <ion-card color="primary" class="card-mercado" *ngFor="let wLista of iListaMercado">
       <ion-card-header>
-        <ion-card-title>{{ wLista.titulo }}</ion-card-title>
+        <ion-card-title class="title-categoria">{{ wLista.categoria }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content *ngFor="let wItens of wLista.itens">
-        <div class="content-card">
+        <div class="content-card d-flex align-items-center">
           <ion-checkbox slot="start" class="checkBox" [(ngModel)]="wItens.selecionado" (click)="marcaCheckBox(wItens)"></ion-checkbox>
-          <ion-label class="{{wItens.class}}">({{ wItens.qtd }} {{wItens.medida}}) {{wItens.nome}}</ion-label>
+          <ion-label class="txt-item {{ wItens.class }}">({{ wItens.quantidade }} {{wItens.unid_medida}}) {{wItens.produto}}</ion-label>
         </div>
       </ion-card-content>
     </ion-card>
   </div>
-
 </ion-content>
 
 <ion-footer>
